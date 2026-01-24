@@ -1,0 +1,32 @@
+.parent {
+    border: 2px solid black;
+    background-color: antiquewhite;
+    width: 500px;
+    height: 300px;
+    overflow: scroll;
+}
+
+.child {
+    border: 2px solid black;
+    width: 250px;
+    height: 70px;
+}
+
+#div1 {
+    background-color: aqua;
+}
+#div2 {
+    background-color: red;
+}
+#div3 {
+    background-color: green;
+}
+#div4 {
+    background-color: yellow;
+}
+#div5 {
+    background-color: blue;
+}
+#div6 {
+    background-color: brown;
+}

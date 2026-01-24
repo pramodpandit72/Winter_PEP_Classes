@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            width: 50px;
+            height: 40px;
+            background-color: aqua;
+        }
+
+        @media (min-width: 400px) and (max-width: 600px) {
+            .parent {
+                background-color: blue;
+            }
+        }
+        .navbar {
+            background-color: antiquewhite;
+            width: 90vw;
+         /* height: 50px; */
+            border: 2px solid black;
+            display: flex;
+            justify-content: space-between;
+        }
+        .logo {
+            border: 2px solid red;
+        }
+        .par {
+            display: flex;
+            gap: 10px;
+        }
+        .childs {
+            border: 2px solid green;
+            display: flex;
+           /* justify-content: center;*/
+            align-items: center;
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+            }
+        }
+        @media (max-width: 500px) {
+            .par {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="parent"></div>
+    <nav class="navbar">
+        <div class="logo">Logo</div>
+        <div class="par">
+            <div class="childs" id="home">Home</div>
+            <div class="childs" id="about">About</div>
+            <div class="childs" id="contact">Contact</div>
+            <div class="childs" id="abc">ABC</div>
+            <div class="childs" id="def">DEF</div>
+        </div>
+    </nav>
+</body>
+</html>

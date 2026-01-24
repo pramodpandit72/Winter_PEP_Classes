@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Grid Layout</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      grid-template-rows: 60px 200px 60px;
+      gap: 15px;
+    }
+
+    .header {
+      grid-column: 1 / -1;
+      background-color: red;
+      border-radius: 8px;
+    }
+
+    .sidebar {
+      background-color: orange;
+      border-radius: 8px;
+    }
+
+    .content {
+      background-color: lightblue;
+      border-radius: 8px;
+    }
+
+    .footer {
+      grid-column: 1 / -1;
+      background-color: green;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    <div class="header"></div>
+    <div class="sidebar"></div>
+    <div class="content"></div>
+    <div class="footer"></div>
+  </div>
+
+</body>
+</html>
