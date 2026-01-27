@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Card</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #888;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #div_1 {
+            background-color: white;
+            width: 320px;
+            height: 200px;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #div_2 {
+            text-align: center;
+        }
+
+        #div_2 h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        #div_2 p {
+            margin-top: 6px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .social_link {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
+        .social_link a {
+            text-decoration: none;
+            color: rgb(12, 126, 126);
+            font-weight: bold;
+        }
+
+        .social_link a:hover {
+            color: #0b6d6d;
+        }
+
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .profile-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgb(31, 180, 180);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="div_1">
+        <div id="div_2">
+            <h1>Pramod Pandit</h1>
+            <p>Frontend Developer</p>
+            <p></p>
+        </div>
+        <div class="profile-container">
+           <img src="image.png" alt="Profile Photo">
+        </div>
+
+        <div class="social_link">
+            <a href="https://github.com/pramodpandit72" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/pramodpandit/" target="_blank">LinkedIn</a>
+            <a href="https://leetcode.com/u/PramodPandit/" target="_blank">LeetCode</a>
+        </div>
+    </div>
+
+</body>
+</html>
