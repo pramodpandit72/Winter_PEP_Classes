@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div>
+        <H2>BMI Calculator</H2>
+    
+        <label for="">Height:</label>
+        <input type="number" name="" id="height" placeholder="height in cm" required> <br>
+    
+        <label for="">Weight:</label>
+        <input type="number" id="weight" placeholder="weight inkh" required> <br>
+    
+        <button onclick="bmiCal()">Calculate</button>
+    
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function bmiCal() {
+            let w = document.getElementById("weight").value;
+            let h = document.getElementById("height").value;
+
+            h = h / 100; // convert in meter
+
+            let bmi = w / (h * h);
+            bmi = bmi.toFixed(2);
+
+            let result = document.getElementById("result");
+            result.textContent = bmi;
+        }
+    </script>
+</body>
+</html>

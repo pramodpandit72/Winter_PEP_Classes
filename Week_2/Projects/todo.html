@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(196, 241, 218);
+        }
+
+        .container {
+            width: 300px;
+            margin: 10px auto;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        input {
+            width: 70%;
+            padding: 6px;
+            background-color: rgb(228, 226, 226);
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 6px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        li {
+            list-style: none;
+            margin-top: 8px;
+            padding: 6px;
+            background: green;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Todo App</h2>
+        <input type="text" id="taskInput" placeholder="Enter Task">
+
+        <button onclick="addTask()">Add</button>
+
+        <ul id="taskList"></ul>
+    </div>
+
+    <script src="todo.js"></script>
+</body>
+</html>
