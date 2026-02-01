@@ -1,0 +1,10 @@
+Method       Purpose          Data Loation
+
+get          read              url
+post         create            body
+put          update(full)      body
+patch        update(partial)   body
+delete       remove            url
+                    
+
+                    

@@ -1,0 +1,17 @@
+Build a backend application using Node.js and Express.js to manage Student 
+records without using any database. Student data must be stored 
+in a local JSON or txt file using fs module.
+
+Objectives:
+*Implement REST ful API using Express.js
+*Perform CRUD operations without a database
+*Use fs module for file handling
+
+Student Fields: id, name, email, course
+
+API Endpoints:
+*POST /Student
+*GET /Student
+*GET /Student/:id
+*PUT /Student/:id
+*DELETE /Student/id
