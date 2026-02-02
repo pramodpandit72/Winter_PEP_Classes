@@ -1,6 +1,1 @@
-{
-  "id": 1,
-  "name": "Rahul",
-  "email": "rahul@gmail.com",
-  "course": "BTech CSE"
-}
+[{"id":1,"name":"Pramod","email":"abc@gmail.com","course":"BTech CSE"},{"id":1,"name":"Kundan","email":"kundan@gmail.com","course":"BTech CSE"}]
