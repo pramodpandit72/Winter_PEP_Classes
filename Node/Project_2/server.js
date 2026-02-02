@@ -9,7 +9,7 @@ let students = JSON.parse(fs.readFileSync("./students.json", "utf-8"));
 app.post("/students", (req, res) => {
     const newStudent = req.body;
     students.push(newStudent);
-    fs.writeFileSync("./students.json", JSON.stringify(students));
+    fs.writeFileSync("./students.json", JSON.stringify(students, null, 2));
     res.send("Student Added");
 });
 

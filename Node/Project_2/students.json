@@ -1,1 +1,20 @@
-[{"id":1,"name":"Pramod","email":"abc@gmail.com","course":"BTech CSE"},{"id":1,"name":"Kundan","email":"kundan@gmail.com","course":"BTech CSE"}]
+[
+  {
+    "id": 1,
+    "name": "Pramod",
+    "email": "abc@gmail.com",
+    "course": "BTech CSE"
+  },
+  {
+    "id": 2,
+    "name": "Kundan",
+    "email": "kundan@gmail.com",
+    "course": "BTech CSE"
+  },
+  {
+    "id": 3,
+    "name": "Hira",
+    "email": "hira@gmail.com",
+    "course": "BTech CSE"
+  }
+]
