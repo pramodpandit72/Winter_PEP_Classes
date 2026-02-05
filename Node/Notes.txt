@@ -7,4 +7,15 @@ patch        update(partial)   body
 delete       remove            url
                     
 
-                    
+req.params and req.query is a object;
+req.params is a url path while req.query is extra information in passed url             
+
+
+res.send -> send anything
+res.status -> http code / api Data
+res.end -> for stoping the process
+res.json -> api data / json data
+res.write -> send data in chunks
+res.redirect -> redirect us to a new file
+res.sendFile ->send File 
+res.render -> dynaminc data

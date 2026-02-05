@@ -26,9 +26,7 @@ app.put("/students/:id", (req, res) => {
     const id = req.params.id;
 
     students = students.map(s =>
-        s.id == id
-            ? { id: s.id, ...req.body }
-            : s
+        s.id == id ? { id: s.id, ...req.body } : s
     );
 
     fs.writeFileSync("./students.json", JSON.stringify(students, null, 2));
