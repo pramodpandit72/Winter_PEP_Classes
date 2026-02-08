@@ -1,0 +1,119 @@
+body {
+  background-color: rgb(236, 234, 234);
+  font-family: Arial;
+  margin: 0;
+  padding: 0;
+}
+
+.top-bar {
+  position: relative;
+  padding: 15px 20px;
+}
+
+.top-bar h1 {
+  text-align: center;
+  margin: 0;
+}
+
+.nav {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.nav button {
+  margin-left: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.form-container {
+  background: white;
+  width: 350px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  margin: 5px 0 10px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: rgb(249, 245, 245);
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  border-radius: 5px;
+  margin: 6px 1px;
+  padding: 6px 12px;
+  background-color: rgb(43, 107, 226);
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+
+#submitButton {
+  width: 100%;
+  margin-top: 15px;
+  background-color: rgb(32, 25, 150);
+}
+
+.dashboard {
+  display: flex;
+  gap: 15px;
+  margin: 20px;
+}
+
+.box {
+  padding: 15px;
+  width: 150px;
+  text-align: center;
+  background: white;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.box span {
+  font-size: 22px;
+}
+
+.pending {
+  border-left: 5px solid orange;
+}
+
+.resolved {
+  border-left: 5px solid green;
+}
+
+.rejected {
+  border-left: 5px solid red;
+}
+
+.filters {
+  margin: 15px 20px;
+}
+
+.filters button {
+  margin-right: 10px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 20px;
+  border-radius: 6px;
+}

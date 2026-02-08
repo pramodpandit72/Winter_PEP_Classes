@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="nav">
+    <button onclick="goUser()">User</button>
+    <button onclick="goAdmin()">Admin</button>
+  </div>
+
+  <h2>Admin Dashboard</h2>
+
+  <!-- DASHBOARD SUMMARY -->
+  <div class="dashboard">
+    <div class="box">
+      Total<br>
+      <span id="totalCount">0</span>
+    </div>
+
+    <div class="box pending">
+      Pending<br>
+      <span id="pendingCount">0</span>
+    </div>
+
+    <div class="box resolved">
+      Resolved<br>
+      <span id="resolvedCount">0</span>
+    </div>
+
+    <div class="box rejected">
+      Rejected<br>
+      <span id="rejectedCount">0</span>
+    </div>
+  </div>
+
+  <!-- FILTER BUTTONS -->
+  <div class="filters">
+    <button onclick="filterStatus('all')">All</button>
+    <button onclick="filterStatus('pending')">Pending</button>
+    <button onclick="filterStatus('resolved')">Resolved</button>
+    <button onclick="filterStatus('rejected')">Rejected</button>
+  </div>
+
+  <h3>Complaint Details</h3>
+  <div id="list"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

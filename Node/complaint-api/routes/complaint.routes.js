@@ -1,11 +1,5 @@
 import express from "express";
-import {
-  getAllComplaints,
-  createComplaint,
-  resolveComplaint,
-  deleteComplaint
-} from "../controllers/complaint.controller.js";
-
+import { getAllComplaints, createComplaint, resolveComplaint, deleteComplaint } from "../controllers/complaint.controller.js";
 import auth from "../middleware/auth.middleware.js";
 
 const router = express.Router();

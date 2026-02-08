@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hostel Complaint</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="top-bar">
+    <h1>Hostel Complaint Form</h1>
+
+    <div class="nav">
+      <button onclick="goUser()">User</button>
+      <button onclick="goAdmin()">Admin</button>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <label>Full Name:</label>
+    <input id="name" placeholder="Full Name">
+
+    <label>Email Address:</label>
+    <input id="email" placeholder="Email Address">
+
+    <label>Subject:</label>
+    <input id="subject" placeholder="Subject">
+
+    <label>Description:</label>
+    <textarea id="desc" placeholder="..."></textarea>
+
+    <button id="submitButton" onclick="submitComplaint()">Submit</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
