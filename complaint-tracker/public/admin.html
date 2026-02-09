@@ -6,16 +6,17 @@
 </head>
 <body>
 
-  <div class="nav">
+
+  <div class="navbar">
+  <div class="nav-left">Admin Dashboard</div>
+  <div class="nav-right">
     <button onclick="goUser()">User</button>
     <button onclick="goAdmin()">Admin</button>
   </div>
+</div>
 
-  <h2>Admin Dashboard</h2>
-
-  <!-- DASHBOARD SUMMARY -->
   <div class="dashboard">
-    <div class="box">
+    <div class="box total">
       Total<br>
       <span id="totalCount">0</span>
     </div>
@@ -36,7 +37,6 @@
     </div>
   </div>
 
-  <!-- FILTER BUTTONS -->
   <div class="filters">
     <button onclick="filterStatus('all')">All</button>
     <button onclick="filterStatus('pending')">Pending</button>

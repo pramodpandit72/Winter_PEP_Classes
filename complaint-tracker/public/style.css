@@ -1,119 +1,200 @@
+* { box-sizing: border-box; }
+
 body {
-  background-color: rgb(236, 234, 234);
-  font-family: Arial;
+  background: rgb(214, 213, 213);
+  font-family: 'Segoe UI', Arial, sans-serif;
   margin: 0;
   padding: 0;
+  color: #333;
 }
 
-.top-bar {
-  position: relative;
-  padding: 15px 20px;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(112, 189, 219);
+  color: #fff;
+  padding: 16px 30px;
 }
 
-.top-bar h1 {
-  text-align: center;
-  margin: 0;
+.nav-left {
+  font-size: 22px;
+  font-weight: 600;
 }
 
-.nav {
-  position: absolute;
-  top: 15px;
-  right: 20px;
+.nav-right {
+  display: flex;
+  gap: 10px;
 }
 
-.nav button {
-  margin-left: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
+.nav-right button {
+  background: #fff;
+  color: #1a237e;
+  padding: 8px 16px;
 }
 
 .form-container {
-  background: white;
-  width: 350px;
-  margin: 50px auto;
-  padding: 20px;
-  border-radius: 8px;
+  background: #fff;
+  width: 400px;
+  max-width: 90%;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
 }
 
 label {
   display: block;
-  margin-top: 10px;
+  margin: 16px 0 6px;
+  font-weight: 500;
+  color: #444;
 }
 
 input, textarea {
-  display: block;
   width: 100%;
-  margin: 5px 0 10px;
-  padding: 8px;
-  border-radius: 6px;
-  background-color: rgb(249, 245, 245);
-  border: 1px solid black;
-  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #3949ab;
 }
 
 textarea {
-  resize: none;
+  resize: vertical;
+  min-height: 100px;
 }
 
+/* Buttons */
 button {
-  border-radius: 5px;
-  margin: 6px 1px;
-  padding: 6px 12px;
-  background-color: rgb(43, 107, 226);
+  border-radius: 6px;
+  padding: 10px 18px;
+  background: #3949ab;
   cursor: pointer;
   border: none;
-  color: white;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+button:hover {
+  background: #bec4f0;
 }
 
 #submitButton {
   width: 100%;
-  margin-top: 15px;
-  background-color: rgb(32, 25, 150);
+  margin-top: 20px;
+  padding: 14px;
+  background: linear-gradient(135deg, #1a237e, #3949ab);
+  font-size: 16px;
 }
 
+/* Dashboard */
 .dashboard {
   display: flex;
-  gap: 15px;
-  margin: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 30px auto;
+  padding: 0 20px;
 }
 
 .box {
-  padding: 15px;
-  width: 150px;
+  padding: 20px;
+  min-width: 140px;
   text-align: center;
-  background: white;
-  border-radius: 8px;
-  font-weight: bold;
+  background: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
 }
 
 .box span {
-  font-size: 22px;
+  font-size: 28px;
+  display: block;
+  margin-top: 8px;
+  color: #1a237e;
 }
 
-.pending {
-  border-left: 5px solid orange;
-}
+.box.total { border-left: 5px solid #3949ab; }
+.box.pending { border-left: 5px solid #ff9800; }
+.box.resolved { border-left: 5px solid #4caf50; }
+.box.rejected { border-left: 5px solid #f44336; }
 
-.resolved {
-  border-left: 5px solid green;
-}
-
-.rejected {
-  border-left: 5px solid red;
-}
-
+/* Filters */
 .filters {
-  margin: 15px 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 30px auto;
 }
 
 .filters button {
-  margin-right: 10px;
+  background: #fff;
+  color: #333;
+  border: 2px solid #ddd;
+}
+
+.filters button:hover {
+  border-color: #3949ab;
+  color: #3949ab;
+}
+
+h3 {
+  text-align: center;
+  margin: 30px 20px 20px;
+  color: #1a237e;
 }
 
 .card {
-  background: white;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px 20px;
-  border-radius: 6px;
+  background: #fff;
+  padding: 20px;
+  margin: 15px auto;
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+}
+
+.card p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.card strong { color: #1a237e; }
+
+.status-pending { color: #e65100; font-weight: 600; }
+.status-resolved { color: #2e7d32; font-weight: 600; }
+.status-rejected { color: #c62828; font-weight: 600; }
+
+.card button {
+  margin-right: 8px;
+  margin-top: 10px;
+}
+
+.card button.delete-btn { background: #757575; }
+.card button.delete-btn:hover { background: #616161; }
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  .dashboard {
+    flex-direction: column;
+    align-items: center;
+  }
+  .box {
+    width: 80%;
+    max-width: 200px;
+  }
+  .form-container {
+    margin: 20px auto;
+    padding: 20px;
+  }
 }

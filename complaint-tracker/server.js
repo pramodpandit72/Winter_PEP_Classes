@@ -15,19 +15,16 @@ const readData = () => JSON.parse(fs.readFileSync(dataFile));
 const writeData = (data) =>
   fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
 
-/* GET all complaints */
 app.get("/complaints", (req, res) => {
   res.json(readData());
 });
 
-/* GET complaint by ID */
 app.get("/complaints/:id", (req, res) => {
   const complaints = readData();
   const complaint = complaints.find(c => c.id == req.params.id);
   res.json(complaint || {});
 });
 
-/* POST new complaint */
 app.post("/complaints", (req, res) => {
   const complaints = readData();
 
@@ -43,7 +40,6 @@ app.post("/complaints", (req, res) => {
   res.json(newComplaint);
 });
 
-/* UPDATE status */
 app.put("/complaints/:id", (req, res) => {
   const complaints = readData();
   const index = complaints.findIndex(c => c.id == req.params.id);
@@ -56,7 +52,6 @@ app.put("/complaints/:id", (req, res) => {
   res.json({ message: "Updated" });
 });
 
-/* DELETE complaint */
 app.delete("/complaints/:id", (req, res) => {
   const complaints = readData().filter(c => c.id != req.params.id);
   writeData(complaints);
