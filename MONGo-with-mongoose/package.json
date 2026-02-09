@@ -1,6 +1,7 @@
 {
-  "name": "mongodb",
+  "name": "mongo-with-mongoose",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -9,10 +10,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "express": "^5.2.1",
-    "mongodb": "^7.1.0",
     "mongoose": "^9.1.6"
   }
 }
