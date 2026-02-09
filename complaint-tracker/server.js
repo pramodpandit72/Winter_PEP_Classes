@@ -3,7 +3,6 @@ import fs from "fs";
 import path from "path";
 
 const app = express();
-const PORT = 3000;
 
 const __dirname = path.resolve();
 const dataFile = "./complaints.json";
@@ -58,6 +57,6 @@ app.delete("/complaints/:id", (req, res) => {
   res.json({ message: "Deleted" });
 });
 
-app.listen(PORT, () =>
-  console.log(`Server running at http://localhost:${PORT}`)
+app.listen(3000, () =>
+  console.log("Server running at http://localhost:3000")
 );
