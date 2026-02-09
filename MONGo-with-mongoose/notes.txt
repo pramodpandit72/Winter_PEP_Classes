@@ -1,0 +1,4 @@
+
+Table -> collection
+rows -> document
+column -> fields

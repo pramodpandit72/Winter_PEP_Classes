@@ -9,7 +9,10 @@ const studentSchema = new mongoose.Schema({
         type: Number,
         min: 1,
     },
+    isActive: {
+        type: Boolean,
+        default: true
+    }
 })
 
-
-export default mongoose.model("studentSchema ");
+export default mongoose.model("Student", studentSchema);
