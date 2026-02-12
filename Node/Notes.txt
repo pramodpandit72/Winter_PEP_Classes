@@ -19,3 +19,47 @@ res.write -> send data in chunks
 res.redirect -> redirect us to a new file
 res.sendFile ->send File 
 res.render -> dynaminc data
+
+
+what is thread pool
+
+what is event loop
+
+libuv, event queue
+
+what is back pressure
+
+what is syncronous and asyncronous operation
+
+What is SCRIPTING Language
+
+A scripting language is a type of programming language used to automate tasks, control other programs, or add behavior to existing systems without compiling.
+
+🔹 Simple definition
+
+A scripting language is a programming language that is interpreted at runtime and mainly used for automation, glue code, and quick development.
+
+🔹 Key characteristics
+Feature	Scripting Language
+Execution	Interpreted (not compiled first)
+Speed	Slower than compiled languages
+Use case	Automation, web, system tasks
+Typing	Usually dynamic
+Boilerplate	Minimal
+Runtime	Needs an interpreter
+
+
+
+what is threadpool javascript
+
+
+if nodejs is single threaded then how async function works in nodejs
+
+what are micro task and macro task
+
+
+which type of data req.params or req.query returns
+
+// Pagination, Projection
+
+skip = limit * (page - 1)

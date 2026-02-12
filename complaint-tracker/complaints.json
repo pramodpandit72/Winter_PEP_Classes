@@ -1,10 +1,26 @@
 [
   {
+    "id": 1,
+    "name": "Pramod Pandit",
+    "email": "pramod2pandit@gmail.com",
+    "subject": "Lift Problem",
+    "description": "Lift not working from 2 days",
+    "status": "pending"
+  },
+  {
     "id": 2,
+    "name": "Akash Kumar",
+    "email": "nwdpramod12305901@gmail.com",
+    "subject": "Carpentary",
+    "description": "Door handle broken",
+    "status": "rejected"
+  },
+  {
+    "id": 3,
     "name": "Ankit Kumar",
     "email": "nwdpramod12305901@gmail.com",
-    "subject": "Hello",
-    "description": "asdfgh",
-    "status": "pending"
+    "subject": "Water problem",
+    "description": "Water not Coming from tap",
+    "status": "resolved"
   }
 ]

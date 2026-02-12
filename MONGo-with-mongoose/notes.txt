@@ -2,3 +2,24 @@
 Table -> collection
 rows -> document
 column -> fields
+
+
+DATA-modeling
+
+use shopDB
+
+db.products.insertMany([
+  { name: "P1", price: 500 },
+  { name: "P2", price: 200 },
+  { name: "P3", price: 900 },
+  { name: "P4", price: 300 },
+  { name: "P5", price: 700 },
+  { name: "P6", price: 100 },
+  { name: "P7", price: 400 },
+  { name: "P8", price: 800 }
+])
+
+db.products.find()
+db.products.find({}, { name: 1, _id: 0 })
+db.products.find({}, { name: 1})
+db.products.find().sort({price: -1})
