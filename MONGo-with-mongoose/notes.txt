@@ -23,3 +23,29 @@ db.products.find()
 db.products.find({}, { name: 1, _id: 0 })
 db.products.find({}, { name: 1})
 db.products.find().sort({price: -1})
+
+
+db.users.insertOne({
+  name: "Pramod",
+  email: "pramod@gmail.com",
+  age: 22
+})
+
+
+for(let i=0; i< 100000;i++){
+  db.users.insertOne({
+    name: "user" + i,
+    email: "user" + i + "@gmail.com",
+    age: Math.floor(Math.random() * 50)
+  });
+}
+
+db.users.find({
+    email: "user9999@gmiil.com"
+})
+
+
+what is index query slower
+
+what makes index query slower?
+case1: when we have very small collection
