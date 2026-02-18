@@ -1,18 +1,29 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const confessionSchema = new mongoose.Schema({
-  text: String,
-  secretCode: String,
+  text: {
+    type: String,
+    required: true
+  },
+  secretCode: {
+    type: String,
+    required: true,
+    minlength: 4
+  },
   reactions: {
     like: { type: Number, default: 0 },
     love: { type: Number, default: 0 },
     laugh: { type: Number, default: 0 }
   },
-  userId: String,
+  userId: {
+    type: String,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now
   }
 });
 
-module.exports = mongoose.model("Confession", confessionSchema);
+const Confession = mongoose.model("Confession", confessionSchema);
+export default Confession;

@@ -18,11 +18,11 @@ const Counter = () => {
     }
 
   return (
-    <div className='h-screen w-full flex flex-col items-center justify-center'>
+    <div className='h-screen w-full flex flex-col items-center justify-center bg-black text-white'>
         <h1>👍 Likes: {likes} </h1>
 
-        <button className='border-2 px-4 py-1 rounded' onClick={() => setLikes(likes + 1)}>Like</button>
-        <button className='border-2 px-4 py-1 rounded' onClick={() => setLikes(likes - 1)}>Dislike</button>
+        <button className='border-2 px-4 py-1 rounded m-2' onClick={() => setLikes(likes + 1)}>Like</button>
+        <button className='border-2 px-4 py-1 rounded m-2' onClick={() => setLikes(likes - 1)}>Dislike</button>
 
         <h2>{message}</h2>
         {likes >= 10 && <h3>🎇 Viral Content</h3>}

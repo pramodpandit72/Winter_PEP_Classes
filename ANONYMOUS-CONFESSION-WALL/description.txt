@@ -1,0 +1,51 @@
+ANONYMOUS CONFESSION WALL
+(With Reactions + Secret Codes + Google OAuth 2.0)
+OBJECTIVE
+Build a simple MERN stack project where users can log in using Google
+OAuth 2.0, post anonymous confessions, react to them, and use a secret
+code to edit or delete their confession.
+TECHNOLOGY STACK
+• MongoDB (Database)
+• Express.js (Backend Framework) (using import i.e. es6)
+• Node.js (Server Runtime)
+• Frontend: React, tailwind CSS 
+• Authentication: Google OAuth 2.0
+FUNCTIONAL REQUIREMENTS
+• User must login using Google OAuth 2.0 before posting.
+• User can submit an anonymous confession.
+• User must enter a secret code while submitting.
+• All confessions should be displayed on the home page.
+• Each confession should have reaction buttons (Like, Love, Laugh).
+• User can edit confession only by entering correct secret code.
+• User can delete confession only by entering correct secret code.
+BACKEND REQUIREMENTS
+• Create REST APIs using Express.
+• Use MongoDB with Mongoose.
+• Implement Google OAuth 2.0 using Passport or similar library.
+• API Routes Required:
+• POST /confessions (Create)
+• GET /confessions (Read All)
+• PUT /confessions/:id (Update with secret code)
+• DELETE /confessions/:id (Delete with secret code)
+• POST /confessions/:id/react (Add reaction)
+DATABASE STRUCTURE
+• text (String)
+• secretCode (String)
+• reactions (Object: like, love, laugh counts)
+• createdAt (Date)
+• userId (Google account ID)
+SECRET CODE RULES
+• Minimum 4 characters.
+• Must be verified before update or delete.
+• If wrong code is entered, show error message.
+UI REQUIREMENTS
+• Simple, bold, clean layout.
+• Confession card design.
+• Reaction buttons visible on each card.
+• Prompt box for secret code during edit/delete.
+• Google Login button on homepage.
+
+
+// Their should be navbar, footer login, signUp should at top right in navbar
+// before login, signUp dark-light mode button, using custom dark, light mode i have already done tailwind setUp
+// it should look professional and attractive
