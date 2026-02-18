@@ -6,6 +6,7 @@ import CharCounter from './projects/CharCounter'
 import DarkLightMode from './projects/DarkLightMode'
 import RandomTheme from './projects/RandomTheme'
 import Number from './projects/Number'
+import Counter from './projects/Counter'
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -19,6 +20,7 @@ const App = () => {
       {/* <DarkLightMode /> */}
       {/* <RandomTheme /> */}
       {/* <Number /> */}
+      <Counter />
         
     </div>
   )
