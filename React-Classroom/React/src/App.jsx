@@ -9,9 +9,12 @@ import Number from './projects/Number'
 import Counter from './projects/Counter'
 import ArrayRendering from './components/ArrayRendering'
 import ToDo from './projects/ToDo'
+import User from './components/User'
+import Props from './components/Props'
 
 const App = () => {
   const [count, setCount] = useState(0)
+
   return (
     <div>
       {/* className='bg-black h-screen w-full flex items-center justify-center text-white' */}
@@ -24,7 +27,14 @@ const App = () => {
       {/* <Number /> */}
       {/* <Counter /> */}
       {/* <ArrayRendering /> */}
-      <ToDo /> 
+      {/* <ToDo />  */}
+
+      {/* <User name="Pramod" age={22} />
+      <User name="Vikas" age={22} />
+      <User name="Mukesh" age={22} /> */}
+
+      <Props />
+      
         
     </div>
   )

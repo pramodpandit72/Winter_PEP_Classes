@@ -1,10 +1,8 @@
-Markdown All in One
-$$ Markdown All in One $$
-
--Provides:
-
-Better syntax highlighting
-
- **Table of contents**
-
-##  Shortcut support
+# Types of props:
+1) String
+2) Number
+3) Boolean
+4) Array
+5) Object
+6) Function 
+7) Children (JSX)
