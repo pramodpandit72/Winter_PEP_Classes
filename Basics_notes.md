@@ -7,4 +7,7 @@
 6) Function 
 7) Children (JSX)
 
-#
+# Props        &&            States
+ Read only                   Mutable
+ Parent->Child               Managed inside component
+ 
