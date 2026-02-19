@@ -14,6 +14,7 @@ import Props from './components/Props'
 import PropsPractice from './components/PropsPractice'
 import PropsDrilling from './props/PropsDrilling'
 import UseEffectBasics from './useEffect/UseEffectBasics'
+import AutoCounter from './projects/AutoCounter'
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -38,7 +39,8 @@ const App = () => {
 
       {/* <Props /> */}
       {/* <PropsDrilling /> */}
-      <UseEffectBasics />  
+      {/* <UseEffectBasics />   */}
+      <AutoCounter />
         
     </div>
   )
