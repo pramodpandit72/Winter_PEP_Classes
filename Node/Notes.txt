@@ -21,6 +21,8 @@ res.sendFile ->send File
 res.render -> dynaminc data
 
 
+What is closure
+
 what is thread pool
 
 what is event loop
