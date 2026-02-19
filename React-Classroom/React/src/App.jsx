@@ -11,6 +11,7 @@ import ArrayRendering from './components/ArrayRendering'
 import ToDo from './projects/ToDo'
 import User from './components/User'
 import Props from './components/Props'
+import PropsPractice from './components/PropsPractice'
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -33,7 +34,9 @@ const App = () => {
       <User name="Vikas" age={22} />
       <User name="Mukesh" age={22} /> */}
 
-      <Props />
+      {/* <Props /> */}
+
+      <PropsPractice />
       
         
     </div>

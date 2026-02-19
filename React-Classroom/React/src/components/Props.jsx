@@ -1,10 +1,9 @@
 import React from 'react'
 
 function Props() {
-
-      function greet(){
-    alert("Hello Students");
-  }
+    function greet(){
+        alert("Hello Students");
+    }
 
   return <Button onClick={greet} />
 }
