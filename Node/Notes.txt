@@ -49,14 +49,15 @@ Boilerplate	Minimal
 Runtime	Needs an interpreter
 
 
-
-what is threadpool javascript
+what is threadpool nodejs
+=>It allows Node.js to handle expensive tasks like file I/O,
+ encryption, compression, and DNS in the background while 
+ keeping the server responsive.
 
 
 if nodejs is single threaded then how async function works in nodejs
 
 what are micro task and macro task
-
 
 which type of data req.params or req.query returns
 
