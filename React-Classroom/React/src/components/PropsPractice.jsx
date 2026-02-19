@@ -10,14 +10,10 @@ function PropsPractice() {
 
   return (
     <div>
-      <input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className='border-2 px-4 py-1'
-        placeholder="Enter your name"
-      />
+      <input value={name} onChange={(e) => setName(e.target.value)} className='border-2 px-4 py-1' placeholder="name"/>
 
       <Button onClick={greet} />
+
     </div>
   )
 }
