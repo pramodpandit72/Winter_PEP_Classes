@@ -7,6 +7,8 @@ import DarkLightMode from './projects/DarkLightMode'
 import RandomTheme from './projects/RandomTheme'
 import Number from './projects/Number'
 import Counter from './projects/Counter'
+import ArrayRendering from './components/ArrayRendering'
+import ToDo from './projects/ToDo'
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -20,7 +22,9 @@ const App = () => {
       {/* <DarkLightMode /> */}
       {/* <RandomTheme /> */}
       {/* <Number /> */}
-      <Counter />
+      {/* <Counter /> */}
+      {/* <ArrayRendering /> */}
+      <ToDo /> 
         
     </div>
   )
