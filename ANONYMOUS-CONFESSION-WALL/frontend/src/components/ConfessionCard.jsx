@@ -1,13 +1,18 @@
 import { useState } from "react";
 import API from "../configs/api.js";
 
-function ConfessionCard({ confession, refresh }) {
+function ConfessionCard({ confession, refresh, currentUser }) {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState("");
   const [secretCode, setSecretCode] = useState("");
   const [newText, setNewText] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+  const [newComment, setNewComment] = useState("");
+  const [commentLoading, setCommentLoading] = useState(false);
+
+  const isOwner = currentUser && currentUser.id === confession.userId;
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -21,15 +26,25 @@ function ConfessionCard({ confession, refresh }) {
   };
 
   const react = async (type) => {
+    if (!currentUser) {
+      alert("Please sign in to react to confessions");
+      return;
+    }
     try {
-      await fetch(`${API}/confessions/${confession._id}/react`, {
+      const response = await fetch(`${API}/confessions/${confession._id}/react`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ type }),
       });
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Reaction failed");
+      }
       refresh();
     } catch (err) {
       console.error("Reaction failed:", err);
+      alert(err.message || "Failed to add reaction");
     }
   };
 
@@ -62,6 +77,7 @@ function ConfessionCard({ confession, refresh }) {
       const options = {
         method: modalType === "edit" ? "PUT" : "DELETE",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify(
           modalType === "edit"
             ? { secretCode, text: newText }
@@ -83,6 +99,70 @@ function ConfessionCard({ confession, refresh }) {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleAddComment = async () => {
+    if (!newComment.trim()) return;
+    if (!currentUser) {
+      alert("Please sign in to comment");
+      return;
+    }
+    
+    setCommentLoading(true);
+    try {
+      const response = await fetch(`${API}/confessions/${confession._id}/comment`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ text: newComment }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Failed to add comment");
+      }
+
+      setNewComment("");
+      refresh();
+    } catch (err) {
+      console.error("Comment failed:", err);
+      alert(err.message || "Failed to add comment");
+    } finally {
+      setCommentLoading(false);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      const response = await fetch(`${API}/confessions/${confession._id}/comment/${commentId}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Failed to delete comment");
+      }
+
+      refresh();
+    } catch (err) {
+      console.error("Delete comment failed:", err);
+    }
+  };
+
+  const formatCommentDate = (dateString) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+
+    if (diffMins < 1) return "just now";
+    if (diffMins < 60) return `${diffMins}m ago`;
+    if (diffHours < 24) return `${diffHours}h ago`;
+    if (diffDays < 7) return `${diffDays}d ago`;
+    return date.toLocaleDateString();
   };
 
   return (
@@ -108,6 +188,13 @@ function ConfessionCard({ confession, refresh }) {
             <span className="font-semibold">{confession.reactions.like}</span>
           </button>
           <button
+            onClick={() => react("dislike")}
+            className="flex items-center space-x-2 px-4 py-2 bg-gray-50 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400 rounded-full hover:bg-gray-100 dark:hover:bg-gray-900/40 transition-all duration-300"
+          >
+            <span>👎</span>
+            <span className="font-semibold">{confession.reactions.dislike || 0}</span>
+          </button>
+          <button
             onClick={() => react("love")}
             className="flex items-center space-x-2 px-4 py-2 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full hover:bg-red-100 dark:hover:bg-red-900/40 transition-all duration-300"
           >
@@ -121,29 +208,137 @@ function ConfessionCard({ confession, refresh }) {
             <span>😂</span>
             <span className="font-semibold">{confession.reactions.laugh}</span>
           </button>
+          <button
+            onClick={() => setShowComments(!showComments)}
+            className="flex items-center space-x-2 px-4 py-2 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-all duration-300"
+          >
+            <span>💬</span>
+            <span className="font-semibold">{confession.comments?.length || 0}</span>
+          </button>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex gap-3 pt-3 border-t border-gray-100 dark:border-gray-700">
-          <button
-            onClick={openEditModal}
-            className="flex items-center space-x-1 text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors duration-300"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-            </svg>
-            <span>Edit</span>
-          </button>
-          <button
-            onClick={openDeleteModal}
-            className="flex items-center space-x-1 text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 font-medium transition-colors duration-300"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-            </svg>
-            <span>Delete</span>
-          </button>
-        </div>
+        {/* Comments Section */}
+        {showComments && (
+          <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+            {/* Add Comment */}
+            {currentUser ? (
+              <div className="flex gap-2 mb-4">
+                <div className="flex-shrink-0">
+                  {currentUser.photo ? (
+                    <img
+                      src={currentUser.photo}
+                      alt={currentUser.displayName}
+                      className="w-8 h-8 rounded-full"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center">
+                      <span className="text-white text-sm font-bold">
+                        {currentUser.displayName?.charAt(0)?.toUpperCase() || "U"}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <input
+                  type="text"
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  onKeyPress={(e) => e.key === "Enter" && handleAddComment()}
+                  placeholder="Add a comment..."
+                  className="flex-1 border border-gray-200 dark:border-gray-600 rounded-full px-4 py-2 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-300"
+                />
+                <button
+                  onClick={handleAddComment}
+                  disabled={commentLoading || !newComment.trim()}
+                  className="cursor-pointer px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {commentLoading ? "..." : "Comment"}
+                </button>
+              </div>
+            ) : (
+              <p className="text-gray-500 dark:text-gray-400 text-sm mb-4 text-center">
+                Please login to add a comment
+              </p>
+            )}
+
+            {/* Comments List */}
+            <div className="space-y-3 max-h-60 overflow-y-auto">
+              {confession.comments?.length > 0 ? (
+                confession.comments.map((comment) => (
+                  <div key={comment._id} className="flex gap-2 group">
+                    <div className="flex-shrink-0">
+                      {comment.userPhoto ? (
+                        <img
+                          src={comment.userPhoto}
+                          alt={comment.userName}
+                          className="w-8 h-8 rounded-full"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center">
+                          <span className="text-white text-sm font-bold">
+                            {comment.userName?.charAt(0)?.toUpperCase() || "A"}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 py-2">
+                        <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
+                          {comment.userName}
+                        </p>
+                        <p className="text-sm text-gray-700 dark:text-gray-300">
+                          {comment.text}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2 mt-1 px-2">
+                        <span className="text-xs text-gray-400">
+                          {formatCommentDate(comment.createdAt)}
+                        </span>
+                        {currentUser && currentUser.id === comment.userId && (
+                          <button
+                            onClick={() => handleDeleteComment(comment._id)}
+                            className="text-xs text-red-500 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            Delete
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-500 dark:text-gray-400 text-sm text-center py-2">
+                  No comments yet. Be the first to comment!
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Action Buttons - Only show edit/delete if user is owner */}
+        {isOwner && (
+          <div className="flex gap-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+            <button
+              onClick={openEditModal}
+              className="flex items-center space-x-1 text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors duration-300"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+              <span>Edit</span>
+            </button>
+            <button
+              onClick={openDeleteModal}
+              className="flex items-center space-x-1 text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 font-medium transition-colors duration-300"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              <span>Delete</span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Modal */}

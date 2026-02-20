@@ -1,12 +1,27 @@
+import { useState, useEffect } from "react";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const { isDark, toggleTheme } = useTheme();
   const { user, login, logout, loading } = useAuth();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50 transition-colors duration-300">
+    <nav className={`sticky top-0 z-50 transition-all duration-300 ${
+      isScrolled 
+        ? "bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg shadow-lg" 
+        : "bg-white dark:bg-gray-800 shadow-lg"
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -45,12 +60,19 @@ const Navbar = () => {
             ) : user ? (
               <div className="flex items-center space-x-3">
                 <div className="flex items-center space-x-2">
-                  {user.photo && (
+                  {user.photo ? (
                     <img
                       src={user.photo}
                       alt={user.displayName}
                       className="w-8 h-8 rounded-full border-2 border-purple-500"
+                      referrerPolicy="no-referrer"
                     />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full border-2 border-purple-500 bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center">
+                      <span className="text-white text-sm font-bold">
+                        {user.displayName?.charAt(0)?.toUpperCase() || user.email?.charAt(0)?.toUpperCase() || "U"}
+                      </span>
+                    </div>
                   )}
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-300 hidden sm:block">
                     {user.displayName}
@@ -58,7 +80,7 @@ const Navbar = () => {
                 </div>
                 <button
                   onClick={logout}
-                  className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-red-500 to-pink-500 rounded-lg hover:from-red-600 hover:to-pink-600 transition-all duration-300 shadow-md hover:shadow-lg"
+                  className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-red-500 to-pink-500 rounded-lg hover:from-red-600 hover:to-pink-600 transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
                 >
                   Logout
                 </button>
@@ -66,7 +88,7 @@ const Navbar = () => {
             ) : (
               <button
                 onClick={login}
-                className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-md hover:shadow-lg"
+                className="cursor-pointer flex items-center space-x-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-md hover:shadow-lg"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path

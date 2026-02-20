@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../configs/api.js";
+import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import ConfessionForm from "../components/ConfessionForm";
@@ -9,6 +10,7 @@ import Footer from "../components/Footer";
 function Home() {
   const [confessions, setConfessions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
 
   const fetchConfessions = async () => {
     try {
@@ -73,6 +75,7 @@ function Home() {
                 key={c._id}
                 confession={c}
                 refresh={fetchConfessions}
+                currentUser={user}
               />
             ))
           )}
