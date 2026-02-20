@@ -11,7 +11,6 @@ dotenv.config();
 
 const app = express();
 
-// CORS configuration
 app.use(cors({
   origin: "http://localhost:5173",
   credentials: true
@@ -19,32 +18,27 @@ app.use(cors({
 
 app.use(express.json());
 
-// Session configuration
 app.use(session({
   secret: process.env.SESSION_SECRET || "confession-wall-secret",
   resave: false,
   saveUninitialized: false,
   cookie: {
     secure: false,
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    maxAge: 24 * 60 * 60 * 1000 
   }
 }));
 
-// Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Serialize user
 passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-// Deserialize user
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-// Google OAuth Strategy
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -53,12 +47,10 @@ passport.use(new GoogleStrategy({
   return done(null, profile);
 }));
 
-// MongoDB connection
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error("MongoDB connection error:", err));
 
-// Auth Routes
 app.get("/auth/google", passport.authenticate("google", {
   scope: ["profile", "email"]
 }));

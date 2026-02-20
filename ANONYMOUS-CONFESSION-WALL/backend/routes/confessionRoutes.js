@@ -3,7 +3,6 @@ import Confession from "../models/confession.js";
 
 const router = express.Router();
 
-// Middleware to check if user is authenticated
 const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
@@ -11,7 +10,6 @@ const isAuthenticated = (req, res, next) => {
   res.status(401).json({ message: "Please login to continue" });
 };
 
-// POST /confessions - Create a new confession
 router.post("/", isAuthenticated, async (req, res) => {
   try {
     const { text, secretCode } = req.body;
@@ -34,7 +32,6 @@ router.post("/", isAuthenticated, async (req, res) => {
 
     await confession.save();
     
-    // Return confession without secretCode
     const confessionResponse = confession.toObject();
     delete confessionResponse.secretCode;
     
@@ -44,7 +41,6 @@ router.post("/", isAuthenticated, async (req, res) => {
   }
 });
 
-// GET /confessions - Get all confessions
 router.get("/", async (req, res) => {
   try {
     const confessions = await Confession.find()
@@ -56,7 +52,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// PUT /confessions/:id - Update confession with secret code verification (owner only)
 router.put("/:id", isAuthenticated, async (req, res) => {
   try {
     const { id } = req.params;
@@ -72,7 +67,6 @@ router.put("/:id", isAuthenticated, async (req, res) => {
       return res.status(404).json({ message: "Confession not found" });
     }
 
-    // Check if the user is the owner of the confession
     if (confession.userId !== req.user.id) {
       return res.status(403).json({ message: "You can only edit your own confessions" });
     }
@@ -93,7 +87,6 @@ router.put("/:id", isAuthenticated, async (req, res) => {
   }
 });
 
-// DELETE /confessions/:id - Delete confession with secret code verification (owner only)
 router.delete("/:id", isAuthenticated, async (req, res) => {
   try {
     const { id } = req.params;
@@ -109,7 +102,6 @@ router.delete("/:id", isAuthenticated, async (req, res) => {
       return res.status(404).json({ message: "Confession not found" });
     }
 
-    // Check if the user is the owner of the confession
     if (confession.userId !== req.user.id) {
       return res.status(403).json({ message: "You can only delete your own confessions" });
     }
@@ -125,7 +117,6 @@ router.delete("/:id", isAuthenticated, async (req, res) => {
   }
 });
 
-// POST /confessions/:id/react - Add reaction to confession (requires authentication)
 router.post("/:id/react", isAuthenticated, async (req, res) => {
   try {
     const { id } = req.params;
@@ -141,7 +132,6 @@ router.post("/:id/react", isAuthenticated, async (req, res) => {
       return res.status(404).json({ message: "Confession not found" });
     }
 
-    // Initialize dislike if it doesn't exist (for backward compatibility)
     if (confession.reactions.dislike === undefined) {
       confession.reactions.dislike = 0;
     }
@@ -158,7 +148,6 @@ router.post("/:id/react", isAuthenticated, async (req, res) => {
   }
 });
 
-// POST /confessions/:id/comment - Add comment to confession
 router.post("/:id/comment", isAuthenticated, async (req, res) => {
   try {
     const { id } = req.params;
@@ -194,7 +183,6 @@ router.post("/:id/comment", isAuthenticated, async (req, res) => {
   }
 });
 
-// DELETE /confessions/:id/comment/:commentId - Delete own comment
 router.delete("/:id/comment/:commentId", isAuthenticated, async (req, res) => {
   try {
     const { id, commentId } = req.params;
