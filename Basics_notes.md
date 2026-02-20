@@ -23,3 +23,5 @@ side effects = things that happen outside normal rendering like:
 * Re-render when state/props change
 * but side effect should not run during rendring.
 * so react gives us useEffect to handle them after render
+
+## What are the Rules of JSX
