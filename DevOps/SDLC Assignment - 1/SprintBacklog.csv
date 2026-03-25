@@ -1,0 +1,11 @@
+Task ID,User Story,Priority,Estimated Hours
+US01,"As a student, I want to login using my university ID so I can access my account.",High,4
+US02,"As a student, I want to register my device so the system can identify me.",Medium,3
+US03,"As a system, I want to detect if a student is within 10 meters of the classroom using geo-fencing.",High,8
+US04,"As a system, I want to automatically mark attendance when the student enters the classroom area.",High,5
+US05,"As a student, I want to receive a notification when my attendance is successfully recorded.",Medium,3
+US06,"As a teacher, I want to view a real-time list of students present in the class.",High,6
+US07,"As a teacher, I want to see attendance history for previous lectures.",Medium,4
+US08,"As an admin, I want to manually override attendance in case of technical issues.",Low,4
+US09,"As a system, I want to store attendance records securely in the database.",High,5
+US10,"As a teacher, I want to generate a daily attendance report for the class.",Medium,4
