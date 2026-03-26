@@ -34,7 +34,7 @@ git rebase main
 git log --oneline --graph --all
 
 Question: Is the history a straight line or a fork?
-
+Answer:- The history becomes a straight line (linear history)
 
 
 ---------------------------------------------------------------------------------------
@@ -80,3 +80,5 @@ git merge feature/bio-update
 git add bio.txt
 git commit -m "resolve: combine name and title"
 git log --oneline --graph
+
+Answer:- This is a fork + merge (non-linear history)
